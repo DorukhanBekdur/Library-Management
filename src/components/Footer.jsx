@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto text-center">
         <h2 className="text-lg font-semibold">Library Management System</h2>
         <p className="text-sm text-gray-400 mt-1">
-          &copy; {new Date().getFullYear()} All Rights Reserved.
+          &copy; {new Date().getFullYear()} All rights belong to Dorukhan Bekdur.
         </p>
         <div className="flex justify-center space-x-6 mt-3">
           <Link to="/books" className="hover:underline">Books</Link>
