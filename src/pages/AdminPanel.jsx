@@ -4,7 +4,7 @@ const AdminPanel = () => {
   const [books, setBooks] = useState([
     { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald" },
     { id: 2, title: "1984", author: "George Orwell" },
-    { id: 3, title: "To Kill a Mockingbird", author: "Harper Lee" }
+    { id: 3, title: "To Kill a Mockingbird", author: "Harper Lee" },
   ]);
 
   const [newBook, setNewBook] = useState({ title: "", author: "" });
@@ -13,7 +13,7 @@ const AdminPanel = () => {
   const addBook = () => {
     if (newBook.title && newBook.author) {
       setBooks([...books, { id: books.length + 1, ...newBook }]);
-      setNewBook({ title: "", author: "" }); 
+      setNewBook({ title: "", author: "" });
     }
   };
 
@@ -23,19 +23,39 @@ const AdminPanel = () => {
 
   const saveEdit = () => {
     setBooks(books.map((b) => (b.id === editingBook.id ? editingBook : b)));
-    setEditingBook(null); 
+    setEditingBook(null);
   };
 
   const deleteBook = (id) => {
-    setBooks(books.filter(book => book.id !== id));
+    setBooks(books.filter((book) => book.id !== id));
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-6 text-center">Admin Panel</h2>
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-indigo-700 flex flex-col items-center text-white px-6 py-12">
+      <h1 className="text-5xl font-extrabold tracking-wide mb-4">
+        Admin <span className="text-yellow-300">Panel</span>
+      </h1>
+      <p className="text-lg text-gray-200 max-w-2xl text-center">
+        Manage books, edit records, and oversee the library system.
+      </p>
 
-      <div className="mb-6 bg-gray-100 p-4 rounded-lg shadow-md">
-        <h3 className="text-xl font-semibold mb-2">Add a New Book</h3>
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-4xl">
+        <div className="bg-white text-black p-6 rounded-lg shadow-lg text-center">
+          <h3 className="text-2xl font-bold">Total Books</h3>
+          <p className="text-4xl font-extrabold text-blue-600">{books.length}</p>
+        </div>
+        <div className="bg-white text-black p-6 rounded-lg shadow-lg text-center">
+          <h3 className="text-2xl font-bold">Users</h3>
+          <p className="text-4xl font-extrabold text-blue-600">245</p>
+        </div>
+        <div className="bg-white text-black p-6 rounded-lg shadow-lg text-center">
+          <h3 className="text-2xl font-bold">Pending Requests</h3>
+          <p className="text-4xl font-extrabold text-red-600">5</p>
+        </div>
+      </div>
+
+      <div className="mt-12 w-full max-w-3xl bg-white text-black p-6 rounded-lg shadow-lg">
+        <h3 className="text-xl font-semibold mb-4">Add a New Book</h3>
         <div className="flex space-x-4">
           <input
             type="text"
@@ -61,8 +81,8 @@ const AdminPanel = () => {
       </div>
 
       {editingBook && (
-        <div className="mb-6 bg-yellow-100 p-4 rounded-lg shadow-md">
-          <h3 className="text-xl font-semibold mb-2">Edit Book</h3>
+        <div className="mt-6 w-full max-w-3xl bg-yellow-100 text-black p-6 rounded-lg shadow-lg">
+          <h3 className="text-xl font-semibold mb-4">Edit Book</h3>
           <div className="flex space-x-4">
             <input
               type="text"
@@ -92,7 +112,7 @@ const AdminPanel = () => {
         </div>
       )}
 
-      <div className="bg-white p-4 rounded-lg shadow-md">
+      <div className="mt-8 w-full max-w-3xl bg-white text-black p-6 rounded-lg shadow-lg">
         <h3 className="text-xl font-semibold mb-4">Book List</h3>
         <table className="w-full border-collapse border border-gray-300">
           <thead>
