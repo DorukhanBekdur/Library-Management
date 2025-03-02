@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Books = () => {
   const [search, setSearch] = useState("");
@@ -27,6 +28,12 @@ const Books = () => {
           <li key={book.id} className="p-4 border rounded-2xl bg-gray-100">
             <h3 className="text-xl font-semibold">{book.title}</h3>
             <p className="text-gray-600">by {book.author}</p>
+            <Link
+              to={`/books/${book.id}`}
+              className="mt-2 inline-block text-blue-600 hover:underline"
+            >
+              View Details
+            </Link>
           </li>
         ))}
       </ul>
